@@ -11,7 +11,7 @@ function Card({ data }) {
         <img
           src={image}
           alt=""
-          className="h-96 w-82 hover:scale-125  duration-300"
+          className="h-80 w-82 hover:scale-125  duration-300"
         />
         <div className="m-4 p-3">
           <h2 className="text-lg font-semibold mb-2">{title.slice(0, 27)}</h2>
@@ -28,6 +28,9 @@ function Card({ data }) {
             {material}
           </h2>
           <h2 className="text-semibold">⭐⭐⭐⭐{rating.rate}</h2>
+          <p className="bg-red-500 text-md text-white font-semibold p-2 my-2 inline-block rounded-sm">
+            Limited time deal
+          </p>
         </div>
       </Link>
     </section>
