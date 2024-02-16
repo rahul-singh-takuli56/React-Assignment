@@ -45,7 +45,7 @@ function Home() {
     <div>
       <Banner query={query} handleInputChange={handleInputChange} />
       <div className="bg-[#FAFAFA] md:grid gap-3  px-2 py-2">
-        <div className="bg-white p-4 rounded ">Left</div>
+        <div className="bg-white p-4 rounded ">Filtering Option</div>
         <div className="bg-white p-4 rounded ">
           <Items result={result} />
         </div>
