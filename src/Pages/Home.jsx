@@ -9,8 +9,9 @@ function Home() {
   const [items, setItems] = useState([]);
   const [query, setQuery] = useState("");
   const [priceRange, setPriceRange] = useState(null);
+  const [selectedMaterial, setSelectedMaterial] = useState("");
   const [isLoading, setIsLoading] = useState(null);
-  const [currentPage, setCurrenPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
   useEffect(() => {
@@ -40,10 +41,28 @@ function Home() {
     setSelectedCategory(event.target.value);
   };
 
-  // Price Based Filtering -> not working
+  // Material Selection Filtering
+  const handleMaterialChange = (event) => {
+    const selectedMaterial = event.target.value;
+    console.log("Selected Material:", selectedMaterial);
+    setSelectedMaterial(selectedMaterial);
+  };
+
+  // Price Based Filtering
   const handlePriceRangeChange = (event) => {
     setPriceRange(event.target.value);
   };
+
+  // Filtered Items based on category, price range, and material
+const filteredItems = items.filter((item) => {
+  const categoryMatch =
+    !selectedCategory || item.category.toLowerCase() === selectedCategory.toLowerCase();
+  const priceMatch = !priceRange || parseInt(item.price) < parseInt(priceRange);
+  const materialMatch = !selectedMaterial || 
+    (item.material && item.material.toLowerCase() === selectedMaterial.toLowerCase());
+  const queryMatch = !query || item.category.toLowerCase().includes(query.toLowerCase());
+  return categoryMatch && priceMatch && materialMatch && queryMatch;
+});
 
   // pagination
   const calculatePageRange = () => {
@@ -55,48 +74,55 @@ function Home() {
   // function for the next page
   const nextPage = () => {
     if (currentPage < Math.ceil(filteredItems.length / itemsPerPage)) {
-      setCurrenPage(currentPage + 1);
+      setCurrentPage(currentPage + 1);
     }
   };
 
   // function for the previous page
   const prevPage = () => {
     if (currentPage > 1) {
-      setCurrenPage(currentPage - 1);
+      setCurrentPage(currentPage - 1);
     }
   };
+
+
+  // Slice the data based on the current page
+  const { startIndex, endIndex } = calculatePageRange();
+  const slicedItems = filteredItems.slice(startIndex, endIndex);
+
+  const result = slicedItems.map((data, i) => <Card key={i} data={data} />);
 
   // filtering Items if any char match
-  const filteredItems = items.filter(
-    (item) => item.category.toLowerCase().indexOf(query.toLowerCase()) === 0
-  );
+  // const filteredItems = items.filter(
+  //   (item) => item.category.toLowerCase().indexOf(query.toLowerCase()) === 0
+  // );
 
-  const filteredData = (items) => {
-    let filterItems = items;
+  // const filteredData = (items) => {
+  //   let filterItems = items;
 
-    // Category Filtering
-    if (selectedCategory) {
-      filterItems = filterItems.filter(
-        ({ category }) =>
-          category.toLowerCase() === selectedCategory.toLowerCase()
-      );
-    }
+  //   // Category Filtering
+  //   if (selectedCategory) {
+  //     filterItems = filterItems.filter(
+  //       ({ category }) =>
+  //         category.toLowerCase() === selectedCategory.toLowerCase()
+  //     );
+  //   }
 
-    // Price Filtering
-    if (priceRange) {
-      filterItems = filterItems.filter(
-        ({ price }) => parseInt(price) < parseInt(priceRange)
-      );
-    }
+  //   // Price Filtering
+  //   if (priceRange) {
+  //     filterItems = filterItems.filter(
+  //       ({ price }) => parseInt(price) < parseInt(priceRange)
+  //     );
+  //   }
 
-    // slice the data based on the current page
-    const { startIndex, endIndex } = calculatePageRange();
-    filterItems = filterItems.slice(startIndex, endIndex);
+  //   // slice the data based on the current page
+  //   const { startIndex, endIndex } = calculatePageRange();
+  //   filterItems = filterItems.slice(startIndex, endIndex);
 
-    return filterItems.map((data, i) => <Card key={i} data={data} />);
-  };
+  //   return filterItems.map((data, i) => <Card key={i} data={data} />);
+  // };
 
-  const result = filteredData(filteredItems);
+  // const result = filteredData(filteredItems);
 
   return (
     <div>
@@ -107,6 +133,7 @@ function Home() {
             handleChange={handleChange}
             handleClick={handleClick}
             handlePriceRangeChange={handlePriceRangeChange}
+            handleMaterialChange={handleMaterialChange}
           />
         </div>
         <div className="bg-white p-4 rounded">
