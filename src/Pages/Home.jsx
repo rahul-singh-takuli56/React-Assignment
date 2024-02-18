@@ -82,6 +82,13 @@ function Home() {
       );
     }
 
+    // Price Filtering
+    if (priceRange) {
+      filterItems = filterItems.filter(
+        ({ price }) => parseInt(price) < parseInt(priceRange)
+      );
+    }
+
     // slice the data based on the current page
     const { startIndex, endIndex } = calculatePageRange();
     filterItems = filterItems.slice(startIndex, endIndex);
