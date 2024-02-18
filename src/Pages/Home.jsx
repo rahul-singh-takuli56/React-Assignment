@@ -137,25 +137,20 @@ const filteredItems = items.filter((item) => {
           />
         </div>
         <div className="bg-white p-4 rounded">
-          {isLoading ? (
-            <p>Loading Please Wait..</p>
-          ) : result.length > 0 ? (
-            <Items result={result} />
-          ) : (
-            <>
-              <h3>{result.length}</h3>
-              <p className="text-6xl text-red-500 font-bold">
-                Items are Sold Please Select difference Categories.{" "}
-              </p>
-            </>
-          )}
+          <Items result={result} />
 
           {/* pagination */}
           {result.length > 0 ? (
-            <div className="flex justify-center mt-4 space-x-8">
-              <button onClick={prevPage}>Previous</button>
-              <span>
-                Page{currentPage} of{" "}
+            <div className="flex justify-center mt-4 space-x-8 ">
+              <button
+                onClick={prevPage}
+                className="hover:underline "
+                disabled={currentPage === 1}
+              >
+                Previous
+              </button>
+              <span className="mx-2">
+                Page {currentPage} of{" "}
                 {Math.ceil(filteredItems.length / itemsPerPage)}
               </span>
               <button
@@ -163,6 +158,7 @@ const filteredItems = items.filter((item) => {
                 disabled={
                   currentPage === Math.ceil(filteredItems.length / itemsPerPage)
                 }
+                className="hover:underline"
               >
                 Next
               </button>

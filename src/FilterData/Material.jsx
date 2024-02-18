@@ -7,7 +7,7 @@ function Material({ handleMaterialChange }) {
         className="bg-green-500 font-semibold text-white p-2 hover:scale-110 transition-all duration-300 rounded-md"
         onChange={handleMaterialChange}
       >
-        <option value="">Material</option>
+        <option value=" ">Material</option>
         <option value="wool">Woolen</option>
         <option value="cotton">Cotton</option>
         <option value="polyster">Polyster</option>
