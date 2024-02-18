@@ -1,6 +1,6 @@
 import React from "react";
 
-function Material({ handleChange }) {
+function Material({ handleChange, handleClick }) {
   return (
     <div className="mx-2">
       <select

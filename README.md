@@ -7,3 +7,4 @@
 2. Rating changes make dynamics
 3. work on it -> Make a new page on details on each product.
 4. Price and Material filtering is not working
+5. Pagination is working only for all categories, when selecting any specific categries it is not showing any data.

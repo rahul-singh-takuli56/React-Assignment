@@ -1,4 +1,3 @@
-import React from "react";
 import Categories from "./Categories";
 import Price from "./Price";
 import Material from "./Material";

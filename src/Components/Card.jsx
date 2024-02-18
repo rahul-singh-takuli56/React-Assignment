@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 function Card({ data }) {
@@ -11,7 +10,7 @@ function Card({ data }) {
         <img
           src={image}
           alt=""
-          className="h-80 w-82 hover:scale-125  duration-300"
+          className="h-80 w-72 hover:scale-125  duration-300"
         />
         <div className="m-4 p-3">
           <h2 className="text-lg font-semibold mb-2">{title.slice(0, 27)}</h2>
