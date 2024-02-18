@@ -4,10 +4,10 @@ import FooterBottom from "./FooterBottom";
 
 function Footer() {
   return (
-    <div>
+    <footer>
       <FooterTop />
       <FooterBottom />
-    </div>
+    </footer>
   );
 }
 
