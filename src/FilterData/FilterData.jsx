@@ -2,7 +2,7 @@ import Categories from "./Categories";
 import Price from "./Price";
 import Material from "./Material";
 
-function FilterData({ handleChange, handleClick, handlePriceRangeChange }) {
+function FilterData({ handleMaterialChange, handleChange, handlePriceRangeChange }) {
   return (
     <div className="space-y-3 ">
       <h3 className="text-lg text-white bg-green-900 rounded-md cursor-pointer p-2 inline-block font-semibold">
@@ -11,7 +11,7 @@ function FilterData({ handleChange, handleClick, handlePriceRangeChange }) {
       <div className="flex justify-start ">
         <Categories handleChange={handleChange} />
         <Price handlePriceRangeChange={handlePriceRangeChange} />
-        <Material handleChange={handleChange} />
+        <Material handleMaterialChange={handleMaterialChange} />
       </div>
     </div>
   );
