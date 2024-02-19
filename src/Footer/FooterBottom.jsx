@@ -14,7 +14,7 @@ function FooterBottom() {
               <span>USA: </span>+90 9348384539
             </p>
             <p className="hover:underline">
-              <span>UAE: </span>+71 9348384539
+              <span className="">UAE: </span>+71 9348384539
             </p>
             <p className="hover:underline">
               <span>RUS: </span>+92 9348384521

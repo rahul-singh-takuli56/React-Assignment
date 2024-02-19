@@ -9,8 +9,8 @@ function Home() {
   const [items, setItems] = useState([]);
   const [query, setQuery] = useState("");
   const [priceRange, setPriceRange] = useState(null);
-  const [selectedMaterial, setSelectedMaterial] = useState("");
   const [isLoading, setIsLoading] = useState(null);
+  const [selectedMaterial, setSelectedMaterial] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
@@ -25,6 +25,7 @@ function Home() {
     };
     fetchData();
   }, []);
+  // console.log(items);
 
   //input change
   const handleInputChange = (event) => {
@@ -54,15 +55,20 @@ function Home() {
   };
 
   // Filtered Items based on category, price range, and material
-const filteredItems = items.filter((item) => {
-  const categoryMatch =
-    !selectedCategory || item.category.toLowerCase() === selectedCategory.toLowerCase();
-  const priceMatch = !priceRange || parseInt(item.price) < parseInt(priceRange);
-  const materialMatch = !selectedMaterial || 
-    (item.material && item.material.toLowerCase() === selectedMaterial.toLowerCase());
-  const queryMatch = !query || item.category.toLowerCase().includes(query.toLowerCase());
-  return categoryMatch && priceMatch && materialMatch && queryMatch;
-});
+  const filteredItems = items.filter((item) => {
+    const categoryMatch =
+      !selectedCategory ||
+      item.category.toLowerCase() === selectedCategory.toLowerCase();
+    const priceMatch =
+      !priceRange || parseInt(item.price) < parseInt(priceRange);
+    const materialMatch =
+      !selectedMaterial ||
+      (item.material &&
+        item.material.toLowerCase() === selectedMaterial.toLowerCase());
+    const queryMatch =
+      item.category.toLowerCase().indexOf(query.toLowerCase()) === 0;
+    return categoryMatch && priceMatch && materialMatch && queryMatch;
+  });
 
   // pagination
   const calculatePageRange = () => {
@@ -84,7 +90,6 @@ const filteredItems = items.filter((item) => {
       setCurrentPage(currentPage - 1);
     }
   };
-
 
   // Slice the data based on the current page
   const { startIndex, endIndex } = calculatePageRange();

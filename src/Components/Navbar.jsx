@@ -20,9 +20,9 @@ function Navbar() {
 
   return (
     <header className="max-w-screen-2xl container mx-auto xl:auto  px-4">
-      <nav className="flex justify-between items-center py-6 ">
+      <nav className="flex justify-between items-center  ">
         <a href="/" className="flex items-center gap-2 text-2xl">
-          <img src={logo} className="md:h-14 h-[60px] w-[180px]" alt="logo" />
+          <img src={logo} className="md:h-[100px] " alt="logo" />
         </a>
 
         {/* nav items for large devices */}
@@ -56,12 +56,6 @@ function Navbar() {
           >
             Sign up
           </Link>
-          <Link
-            to="/add-to-cart"
-            className="py-2 px-5 border bg-blue-500 text-white rounded-lg"
-          >
-            Add to Cart
-          </Link>
         </div>
 
         {/* mobile menu */}
@@ -75,7 +69,7 @@ function Navbar() {
           </button>
         </div>
       </nav>
-
+      <hr />
       {/* navItems for mobile */}
       <div
         className={`px-4 bg-gray-800 py-5 rounded-sm ${
